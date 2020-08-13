@@ -21,9 +21,6 @@ _La salida con run() nos muestra cada hilo con su rango asignado en el respectiv
 _Porque start() crea un nuevo hilo, lo hace ejecutable y luego run() hace que el nuevo hilo comience su vida dentro de este método VS que si llamamos a run() directamente no se crea un nuevo hilo y se ejecutará el código dentro de run() en el hilo actual._
 
 
-#### Part II - Black List Search Exercise
-
-
 #### Part III - Discussion
 
 _¿Cómo se podría modificar la implementación para minimizar el número de consultas en estos casos?_ 
@@ -33,7 +30,12 @@ _¿Qué nuevo elemento aportaría esto al problema?_
 
 
 #### Part IV - Performance Evaluation
-**Tiempo de solución vs. Número de subprocesos:**
+**JVM:**
+
+
+
+**Gráfica de Tiempo de solución vs Número de subprocesos:**
+![alt text](https://github.com/angiedanielar/LAB1_ARSW/master/imagenes/grafica.jpg) 
 
 
 _De acuerdo con la ley de Amdahl, donde S (n) es la mejora teórica del rendimiento, P la fracción paralela del algoritmo yn el número de subprocesos, cuanto mayor sea n, mejor debería ser esta mejora. ¿Por qué no se logra el mejor rendimiento con los 500 hilos? ¿Cómo se compara este rendimiento cuando se usa 200?_
@@ -46,12 +48,6 @@ _Según lo anterior, si para este problema en lugar de 100 subprocesos en una so
 
 
 ### Snake Race
-#### Parte 1
-
-
-_Cada t milisegundos de ejecución del hilo, todos los hilos se detengan y muestren el número de primos encontrados hasta ese momento. Luego, hay que esperar hasta presionar ENTER para reanudar la ejecución de los hilos._
-
-
 #### Parte 2
 
 
