@@ -35,7 +35,7 @@ _¿Qué nuevo elemento aportaría esto al problema?_
 
 
 **Gráfica de Tiempo de solución vs Número de subprocesos:**
-![alt text](https://github.com/angiedanielar/LAB1_ARSW/master/imagenes/grafica.jpg) 
+![alt text](https://raw.githubusercontent.com/angiedanielar/LAB1_ARSW/master/imagenes/grafica.jpg) 
 
 
 _De acuerdo con la ley de Amdahl, donde S (n) es la mejora teórica del rendimiento, P la fracción paralela del algoritmo yn el número de subprocesos, cuanto mayor sea n, mejor debería ser esta mejora. ¿Por qué no se logra el mejor rendimiento con los 500 hilos? ¿Cómo se compara este rendimiento cuando se usa 200?_
