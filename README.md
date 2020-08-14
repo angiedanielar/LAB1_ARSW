@@ -23,28 +23,33 @@ _Porque start() crea un nuevo hilo, lo hace ejecutable y luego run() hace que el
 
 #### Part III - Discussion
 
-_¿Cómo se podría modificar la implementación para minimizar el número de consultas en estos casos?_ 
-La estrategia de paralelismo implementada anteriormente es ineficaz en ciertos casos, ya que la búsqueda aún se realiza incluso cuando los N subprocesos ya han encontrado el número mínimo de ocurrencias requeridas para reportar al servidor como malicioso. Se podría mejorar 
+_¿Cómo se podría modificar la implementación para minimizar el número de consultas en estos casos? y ¿Qué nuevo elemento aportaría esto al problema?_ 
 
-_¿Qué nuevo elemento aportaría esto al problema?_
+
+_La estrategia de paralelismo implementada anteriormente es ineficaz en ciertos casos, ya que la búsqueda aún se realiza incluso cuando los N subprocesos ya han encontrado el número mínimo de ocurrencias requeridas para reportar al servidor como malicioso. Se podría mejorar usando la alarma como variable comun para los hilos, se usa como un factor comun con las consultas pasadas, teniendo en cuenta que no se asegura que no se presenten condiciones de carrera al no ser thread-safe, este sería el nuevo elemento que se aportaría al problema, pero que teniendo en cuenta las lecturas se podría utilizar un tipo de dato atómico para deshacernos de los problemas de seguridad en el hilo._
 
 
 #### Part IV - Performance Evaluation
 **JVM:**
-
+![alt text](https://raw.githubusercontent.com/angiedanielar/LAB1_ARSW/master/imagenes/1.jpg) 
+![alt text](https://raw.githubusercontent.com/angiedanielar/LAB1_ARSW/master/imagenes/8.jpg) 
+![alt text](https://raw.githubusercontent.com/angiedanielar/LAB1_ARSW/master/imagenes/16.jpg) 
+![alt text](https://raw.githubusercontent.com/angiedanielar/LAB1_ARSW/master/imagenes/50.jpg) 
+![alt text](https://raw.githubusercontent.com/angiedanielar/LAB1_ARSW/master/imagenes/100.jpg) 
 
 
 **Gráfica de Tiempo de solución vs Número de subprocesos:**
 ![alt text](https://raw.githubusercontent.com/angiedanielar/LAB1_ARSW/master/imagenes/grafica.jpg) 
+_De acuerdo con la ley de Amdahl, donde S (n) es la mejora teórica del rendimiento, P la fracción paralela del algoritmo y el número de subprocesos, cuanto mayor sea n, mejor debería ser esta mejora. ¿Por qué no se logra el mejor rendimiento con los 50 hilos? ¿Cómo se compara este rendimiento cuando se usa 100? y ¿Cómo se comporta la solución al usar tantos subprocesos de procesamiento como núcleos en comparación con el resultado de usar el doble?__
 
 
-_De acuerdo con la ley de Amdahl, donde S (n) es la mejora teórica del rendimiento, P la fracción paralela del algoritmo yn el número de subprocesos, cuanto mayor sea n, mejor debería ser esta mejora. ¿Por qué no se logra el mejor rendimiento con los 500 hilos? ¿Cómo se compara este rendimiento cuando se usa 200?_
-
-
-_¿Cómo se comporta la solución al usar tantos subprocesos de procesamiento como núcleos en comparación con el resultado de usar el doble?_
+_Entre más hilos, mejor rendimiento obtendremos, en nuestro programa el usar hilos estamos mejorando el tiempo de ejecución de los mismos. Al comenzar el análisis vemos que los resultados varian, el cambio es bastante grande cuando pasamos de 1 hilo a 8,  pero al pasar de 8 a 16 vemos que se reduce a la aproximadamente la mitad el tiempo de solución, luego de nuevo vemos un cambio grande al pasar de 16 a 50, y para finalizar volvemos a ver que al usar 50 y su doble, también se reduce a la aproximadamente la mitad el tiempo de solución. Los cambios son notorios en cada uno de los casos. 
 
 
 _Según lo anterior, si para este problema en lugar de 100 subprocesos en una sola CPU se pudiera utilizar 1 subproceso en cada una de las 100 máquinas hipotéticas, ¿Se aplicaría mejor la ley de Amdahl?. Si se utilizan x subprocesos en lugar de 100 / x máquinas distribuidas (donde x es el número de núcleos de estas máquinas), ¿se mejoraría? Explica tu respuesta._
+
+
+_Pendiente..._
 
 
 ### Snake Race
