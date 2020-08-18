@@ -105,7 +105,7 @@ _maven package_
 _mvn test_
 
 
-**_Para ejecutar las clases principales:_** 🛠️
+**_Para ejecutar las clases principales:_ 🛠️** 
  * _mvn exec:java -Dexec.mainClass="edu.eci.arsw.threads.CountThreadsMain"_
 
 
