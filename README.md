@@ -26,16 +26,30 @@ _Porque start() crea un nuevo hilo, lo hace ejecutable y luego run() hace que el
 **¿Cómo se podría modificar la implementación para minimizar el número de consultas en estos casos? y ¿Qué nuevo elemento aportaría esto al problema?**
 
 
-_La estrategia de paralelismo implementada anteriormente es ineficaz en ciertos casos, ya que la búsqueda aún se realiza incluso cuando los N subprocesos ya han encontrado el número mínimo de ocurrencias requeridas para reportar al servidor como malicioso. Se podría mejorar usando la alarma como variable estatica comun para los hilos, ya que como todos los hilos tendrían el mismo valor dejarían de consultar cuándo se exceda el monto mínimo._
+_La estrategia de paralelismo implementada anteriormente es ineficaz en ciertos casos, ya que la búsqueda aún se realiza incluso cuando los N subprocesos ya han encontrado el número mínimo de ocurrencias requeridas para reportar al servidor como malicioso. Se podría mejorar usando una variable est�tica com�n para los hilos, se usa como un factor comun con las consultas pasadas, teniendo en cuenta que no se asegura que no se presenten condiciones de carrera al no ser thread-safe, este sería el nuevo elemento que se aportaría al problema, pero que teniendo en cuenta las lecturas se podría utilizar un tipo de dato atómico para deshacernos de los problemas de seguridad en el hilo._
 
 
 #### Part IV - Performance Evaluation
 **JVM:**
-![alt text](https://raw.githubusercontent.com/angiedanielar/LAB1_ARSW/master/imagenes/1.jpg) 
-![alt text](https://raw.githubusercontent.com/angiedanielar/LAB1_ARSW/master/imagenes/8.jpg) 
+##### 1 Hilo
+![alt text](https://raw.githubusercontent.com/angiedanielar/LAB1_ARSW/master/imagenes/1.jpg)
+![alt text](https://raw.githubusercontent.com/angiedanielar/LAB1_ARSW/master/imagenes/1_1.jpg)
+
+##### 8 Hilos
+![alt text](https://raw.githubusercontent.com/angiedanielar/LAB1_ARSW/master/imagenes/8.jpg)
+![alt text](https://raw.githubusercontent.com/angiedanielar/LAB1_ARSW/master/imagenes/8_1.jpg)
+
+##### 16 Hilos  
 ![alt text](https://raw.githubusercontent.com/angiedanielar/LAB1_ARSW/master/imagenes/16.jpg) 
-![alt text](https://raw.githubusercontent.com/angiedanielar/LAB1_ARSW/master/imagenes/50.jpg) 
-![alt text](https://raw.githubusercontent.com/angiedanielar/LAB1_ARSW/master/imagenes/100.jpg) 
+![alt text](https://raw.githubusercontent.com/angiedanielar/LAB1_ARSW/master/imagenes/16_1.jpg)
+
+##### 50 Hilos   
+![alt text](https://raw.githubusercontent.com/angiedanielar/LAB1_ARSW/master/imagenes/50.jpg)
+![alt text](https://raw.githubusercontent.com/angiedanielar/LAB1_ARSW/master/imagenes/50_1.jpg)
+
+##### 100 Hilos    
+![alt text](https://raw.githubusercontent.com/angiedanielar/LAB1_ARSW/master/imagenes/100.jpg)
+![alt text](https://raw.githubusercontent.com/angiedanielar/LAB1_ARSW/master/imagenes/100_1.jpg)  
 
 
 **Gráfica de Tiempo de solución vs Número de subprocesos:**
@@ -53,7 +67,7 @@ _Entre más hilos, mejor rendimiento obtendremos, en nuestro programa el usar hi
 **Según lo anterior, si para este problema en lugar de 100 subprocesos en una sola CPU se pudiera utilizar 1 subproceso en cada una de las 100 máquinas hipotéticas, ¿Se aplicaría mejor la ley de Amdahl?. Si se utilizan x subprocesos en lugar de 100 / x máquinas distribuidas (donde x es el número de núcleos de estas máquinas), ¿se mejoraría? Explica tu respuesta.**
 
 
-_Pendiente..._
+_Suponiendo que tenemos una conexi�n a 100 m�quinas, en teor�a se tienen 100 CPUs, de los cuales solo estar�amos usando 1 hilo por cada CPU, entonces la velocidad y capacidad de procesamiento mejorar�an bastante, ya que no estamos sobrecargando un solo CPU con muchos hilos sino que de esta forma cada CPU estar�a trabajando sin necesidad de sobrecarga, pero con la velocidad de 100 hilos paralelos._
 
 
 ### Snake Race
