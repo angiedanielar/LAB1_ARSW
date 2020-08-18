@@ -94,7 +94,7 @@ _Suponiendo que tenemos una conexión a 100 máquinas, en teoría se tienen 100 
   * _Los rayos hacen que la serpiente aumente su velocidad:_
   
   
-## ¡¡¡Compile and run instructions!!!
+## ¡¡¡Compile and run instructions!!! 🛠️
 
 
 **_Para compilar:_**
@@ -105,7 +105,7 @@ _maven package_
 _mvn test_
 
 
-**_Para ejecutar las clases principales:_ 🛠️** 
+**_Para ejecutar las clases principales:_** 
  * _mvn exec:java -Dexec.mainClass="edu.eci.arsw.threads.CountThreadsMain"_
 
 
