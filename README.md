@@ -7,8 +7,8 @@
 * _Juan Sebastian Díaz Salamanca_ 
 
 
-## Black List Search
-### Part I - Introduction to threads in JAVA
+## Black List Search 📄
+### _Part I - Introduction to threads in JAVA_
 
 
 **¿Cómo cambia la salida?:**
@@ -19,39 +19,39 @@ _La salida con run() nos muestra cada hilo con su rango asignado en el respectiv
 _Porque start() crea un nuevo hilo, lo hace ejecutable y luego run() hace que el nuevo hilo comience su vida dentro de este método VS que si llamamos a run() directamente no se crea un nuevo hilo y se ejecutarÃ¡ el código dentro de run() en el hilo actual._
 
 
-### Part III - Discussion
+### _Part III - Discussion_
 
 **¿Cómo se podría modificar la implementación para minimizar el número de consultas en estos casos? y ¿Qué nuevo elemento aportaría esto al problema?**
 _La estrategia de paralelismo implementada anteriormente es ineficaz en ciertos casos, ya que la búsqueda aún se realiza incluso cuando los N subprocesos ya han encontrado el número mínimo de ocurrencias requeridas para reportar al servidor como malicioso. Se podría mejorar usando una variable estática común para los hilos, que vaya contando las ocurrencias de los hilos, así todos los hilos verian y usarian el mismo valor, logrando que cuando llegue al monto minímo para saber si es un servidor malicioso no siga consultando de forma ineficiente como lo hace actualmente, teniendo en cuenta que no se asegura que no se presenten condiciones de carrera al no ser thread-safe, este sería el nuevo elemento que se aportaría al problema en sí, pero que teniendo en cuenta las lecturas se podría utilizar un tipo de dato atómico para deshacernos de los problemas de seguridad en el hilo._
 
 
-### Part IV - Performance Evaluation
-#### 1 Hilo
+### _Part IV - Performance Evaluation_
+ * 1 Hilo
 ![alt text](https://raw.githubusercontent.com/angiedanielar/LAB1_ARSW/master/imagenes/1.jpg)
 ![alt text](https://raw.githubusercontent.com/angiedanielar/LAB1_ARSW/master/imagenes/1_1.jpeg)
 
 
-#### 8 Hilos
+ * 8 Hilos
 ![alt text](https://raw.githubusercontent.com/angiedanielar/LAB1_ARSW/master/imagenes/8.jpg)
 ![alt text](https://raw.githubusercontent.com/angiedanielar/LAB1_ARSW/master/imagenes/8_1.jpeg)
 
 
-#### 16 Hilos  
+ * 16 Hilos  
 ![alt text](https://raw.githubusercontent.com/angiedanielar/LAB1_ARSW/master/imagenes/16.jpg) 
 ![alt text](https://raw.githubusercontent.com/angiedanielar/LAB1_ARSW/master/imagenes/16_1.jpeg)
 
 
-#### 50 Hilos   
+ * 50 Hilos   
 ![alt text](https://raw.githubusercontent.com/angiedanielar/LAB1_ARSW/master/imagenes/50.jpg)
 ![alt text](https://raw.githubusercontent.com/angiedanielar/LAB1_ARSW/master/imagenes/50_1.jpeg)
 
 
-#### 100 Hilos    
+ * 100 Hilos    
 ![alt text](https://raw.githubusercontent.com/angiedanielar/LAB1_ARSW/master/imagenes/100.jpg)
 ![alt text](https://raw.githubusercontent.com/angiedanielar/LAB1_ARSW/master/imagenes/100_1.jpeg)  
 
 
-**Gráfica de Tiempo de solución vs Número de subprocesos:**
+**_Gráfica de Tiempo de solución vs Número de subprocesos:_**
 
 
 ![alt text](https://raw.githubusercontent.com/angiedanielar/LAB1_ARSW/master/imagenes/grafica.jpg) 
