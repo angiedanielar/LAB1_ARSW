@@ -26,7 +26,7 @@ _Porque start() crea un nuevo hilo, lo hace ejecutable y luego run() hace que el
 **¿Cómo se podría modificar la implementación para minimizar el número de consultas en estos casos? y ¿Qué nuevo elemento aportaría esto al problema?**
 
 
-_La estrategia de paralelismo implementada anteriormente es ineficaz en ciertos casos, ya que la búsqueda aún se realiza incluso cuando los N subprocesos ya han encontrado el número mínimo de ocurrencias requeridas para reportar al servidor como malicioso. Se podría mejorar usando la alarma como variable comun para los hilos, se usa como un factor comun con las consultas pasadas, teniendo en cuenta que no se asegura que no se presenten condiciones de carrera al no ser thread-safe, este sería el nuevo elemento que se aportaría al problema, pero que teniendo en cuenta las lecturas se podría utilizar un tipo de dato atómico para deshacernos de los problemas de seguridad en el hilo._
+_La estrategia de paralelismo implementada anteriormente es ineficaz en ciertos casos, ya que la búsqueda aún se realiza incluso cuando los N subprocesos ya han encontrado el número mínimo de ocurrencias requeridas para reportar al servidor como malicioso. Se podría mejorar usando la alarma como variable estatica comun para los hilos, ya que como todos los hilos tendrían el mismo valor dejarían de consultar cuándo se exceda el monto mínimo._
 
 
 #### Part IV - Performance Evaluation
