@@ -1,12 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.eci.arsw.primefinder;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.concurrent.atomic.AtomicInteger;
 /**
- *
+ * @author Daniela Ruiz - Juan Diaz 
  */
 public class Control extends Thread {
     
@@ -16,18 +14,18 @@ public class Control extends Thread {
 
     private final int NDATA = MAXVALUE / NTHREADS;
 
-    private PrimeFinderThread pft[];
+    private ArrayList<PrimeFinderThread> primeThreads;
+    private AtomicInteger totalPrimes;
     
     private Control() {
         super();
-        this.pft = new  PrimeFinderThread[NTHREADS];
-
+        primeThreads = new ArrayList<>();
+        totalPrimes = new AtomicInteger();
         int i;
         for(i = 0;i < NTHREADS - 1; i++) {
-            PrimeFinderThread elem = new PrimeFinderThread(i*NDATA, (i+1)*NDATA);
-            pft[i] = elem;
+            primeThreads.add( new PrimeFinderThread(i*NDATA, (i+1)*NDATA, totalPrimes));
         }
-        pft[i] = new PrimeFinderThread(i*NDATA, MAXVALUE + 1);
+        primeThreads.add(new PrimeFinderThread(i*NDATA, MAXVALUE + 1, totalPrimes));
     }
     
     public static Control newControl() {
@@ -36,8 +34,22 @@ public class Control extends Thread {
 
     @Override
     public void run() {
-        for(int i = 0;i < NTHREADS;i++ ) {
-            pft[i].start();
+        System.out.println("----------PRIME FINDER----------");
+        for(Thread t: primeThreads){t.start();};
+        long startTime = System.currentTimeMillis();
+        while(primeThreads.stream().anyMatch(Thread::isAlive)){
+            if(System.currentTimeMillis() - startTime >= TMILISECONDS){
+                for(PrimeFinderThread t: primeThreads){t.pausePrimeFinder();};
+                System.out.println("-- Total primes found: " + totalPrimes +" --"+ "\n-- Press ENTER to continue search --");                            
+                Scanner console = new Scanner(System.in);
+                String input = console.nextLine();
+                while(!input.isEmpty()){
+                    System.out.println("-- Press ENTER to continue search --");
+                    input = console.nextLine();
+                }
+                for(PrimeFinderThread t: primeThreads){t.resumePrimeFinder();};
+                startTime = System.currentTimeMillis();
+            }
         }
     }
     
