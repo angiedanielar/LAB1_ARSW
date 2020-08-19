@@ -100,7 +100,7 @@ _SnakeRace es una versión autónoma, multi-serpiente del famoso juego llamado "
   * _El concepto de colisión no existe entre ellos. La única forma en que mueren es chocando contra una pared:_
   
   
-  * _Hay ratones distribuidos a lo largo del juego. Como en el juego clásico, cada vez que una serpiente se come un ratón, crece:_
+  * _Hay ratones distribuidos a lo largo del juego. Como en el juego clásico, cada vez que una serpiente se come un ratón, crece._
   
   
   * _Hay algunos puntos (flechas rojas) que teletransportan a las serpientes:_
