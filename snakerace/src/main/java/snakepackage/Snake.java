@@ -26,12 +26,12 @@ public class Snake extends Observable implements Runnable {
     private boolean isSelected = false;
     private int growing = 0;
     public boolean goal = false;
+    private boolean snakePaused = false;
 
     public Snake(int idt, Cell head, int direction) {
         this.idt = idt;
         this.direction = direction;
         generateSnake(head);
-
     }
 
     public boolean isSnakeEnd() {
@@ -48,7 +48,16 @@ public class Snake extends Observable implements Runnable {
     @Override
     public void run() {
         while (!snakeEnd) {
-            
+            while (snakePaused) {
+                synchronized (this) {
+                    try {
+                        wait();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
             snakeCalc();
 
             //NOTIFY CHANGES TO GUI
@@ -56,20 +65,19 @@ public class Snake extends Observable implements Runnable {
             notifyObservers();
 
             try {
-                if (hasTurbo == true) {
-                    Thread.sleep(500 / 3);
+                if (hasTurbo) {
+                    Thread.sleep(200 / 3);
                 } else {
-                    Thread.sleep(500);
+                    Thread.sleep(200);
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
 
         }
-        
+
         fixDirection(head);
-        
-        
+
     }
 
     private void snakeCalc() {
@@ -78,14 +86,14 @@ public class Snake extends Observable implements Runnable {
         newCell = head;
 
         newCell = changeDirection(newCell);
-        
+
         randomMovement(newCell);
 
         checkIfFood(newCell);
         checkIfJumpPad(newCell);
         checkIfTurboBoost(newCell);
         checkIfBarrier(newCell);
-        
+
         snakeBody.push(newCell);
 
         if (growing <= 0) {
@@ -103,11 +111,10 @@ public class Snake extends Observable implements Runnable {
             // crash
             System.out.println("[" + idt + "] " + "CRASHED AGAINST BARRIER "
                     + newCell.toString());
-            snakeEnd=true;
+            snakeEnd = true;
         }
     }
 
-    
     private Cell fixDirection(Cell newCell) {
 
         // revert movement
@@ -326,7 +333,6 @@ public class Snake extends Observable implements Runnable {
                 + " for Snake" + this.idt);
         this.objective = c;
     }*/
-
     public LinkedList<Cell> getBody() {
         return this.snakeBody;
     }
@@ -341,6 +347,19 @@ public class Snake extends Observable implements Runnable {
 
     public int getIdt() {
         return idt;
+    }
+
+    public void pauseSnake() {
+        snakePaused = true;
+    }
+
+    public synchronized void resumeSnake() {
+        snakePaused = false;
+        notify();
+    }
+
+    public int snakeSize() {
+        return snakeBody.size();
     }
 
 }
