@@ -69,9 +69,17 @@ _Suponiendo que tenemos una conexión a 100 máquinas, en teoría se tienen 100 
 ### Parte 1
 #### PrimeFinder
 
-* Ejercicio solucionado
-* Añadido el contador de primos encontrados hasta T milisegundos
-* Añadido la instrucción de presionar ENTER para continuar con la búsqueda
+* _Ejercicio solucionado_
+* _Añadido el contador de primos encontrados hasta T milisegundos_
+* _Añadido la instrucción de presionar ENTER para continuar con la búsqueda_
+
+### Parte 2
+_SnakeRace es una versión autónoma, multi-serpiente del famoso juego llamado "Sanke" basado en el proyecto de Joao Andrade. Este ejercicio es un 'fork' de su trabajo._
+* _N serpientes trabajan de manera autónoma_
+* _El concepto de colisión no existe entre ellas. La unica forma de que mueran es estrellándose en una pared._
+* _Hay ratones distribuidos a lo largo del juego. Como en el juego clásico, cada vez que una serpiente come un ratón, crece._
+* _Hay algunos puntos rojos (flechas rojas) que teleportan las serpientes.
+* _Los rayos casuan que la serpiente incremente su velocidad._
 
 ### Parte 3
 
