@@ -78,7 +78,7 @@ _SnakeRace es una versión autónoma, multi-serpiente del famoso juego llamado "
 * _N serpientes trabajan de manera autónoma_
 * _El concepto de colisión no existe entre ellas. La unica forma de que mueran es estrellándose en una pared._
 * _Hay ratones distribuidos a lo largo del juego. Como en el juego clásico, cada vez que una serpiente come un ratón, crece._
-* _Hay algunos puntos rojos (flechas rojas) que teleportan las serpientes.
+* _Hay algunos puntos rojos (flechas rojas) que teleportan las serpientes._
 * _Los rayos casuan que la serpiente incremente su velocidad._
 
 ### Parte 3
@@ -116,6 +116,12 @@ _mvn test_
 
 
  * _mvn exec:java -Dexec.mainClass="edu.eci.arsw.blacklistvalidator.Main"_
+ 
+ 
+ * _mvn exec:java -Dexec.mainClass="edu.eci.arsw.primefinder.Main"_
+  
+  
+ * _mvn exec:java -Dexec.mainClass="snakepackage.SnakeApp"_
 
 
 
