@@ -87,7 +87,7 @@ _Posibles condiciones de carrera:_
 * _Hay un hilo encargado de dibujar el cuerpo de la serpiente. Este mismo hilo lo comparten las serpientes para cambiar su tamaño o su posición cuando ocurre algún evento._  
   
 _Uso innecesario de esperas activas:_
-* _Es posible que exista una espera activa innnecesaria en init() ya que siempre esta mirando si las serpientes estan vivas (implementación de un while) y al final cuando ya no quede ninguna, terminar el juego. Por otro lado, los hilos que manejan la velocidad del juego usan un método sleep() y no estan a la espera de algún notify().
+* _Es posible que exista una espera activa innnecesaria en init() ya que siempre esta mirando si las serpientes estan vivas (implementación de un while) y al final cuando ya no quede ninguna, terminar el juego. Por otro lado, los hilos que manejan la velocidad del juego usan un método sleep() y no estan a la espera de algún notify()._
 
 _Un uso incorrecto o inadecuado de las colecciones:_
 * _Es posible que se lance una excepción "Exception in thread "AWT-EventQueue-0" java.util.ConcurrentModificationException" cuando se intenta dibujar dos veces en una celda a la vez diferentes serpientes, es decir, no hay ningun tipo de bloqueo de celda. Todo el tiempo se esta iterando sobre la colección que se usa para repesentar la serpiente._  
