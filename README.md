@@ -83,31 +83,22 @@ _SnakeRace es una versión autónoma, multi-serpiente del famoso juego llamado "
 
 ### Parte 3
 
-  * _Posibles condiciones de carrera:_
+_Posibles condiciones de carrera:_
+* _Hay un hilo encargado de dibujar el cuerpo de la serpiente. Este mismo hilo lo comparten las serpientes para cambiar su tamaño o su posición cuando ocurre algún evento._  
   
-  
-  * _Uso innecesario de esperas activas:_
-  
-  
-  * _Un uso incorrecto o inadecuado de las colecciones:_
-  
+_Uso innecesario de esperas activas:_
+* _Es posible que exista una espera activa innnecesaria en init() ya que siempre esta mirando si las serpientes estan vivas (implementación de un while) y al final cuando ya no quede ninguna, terminar el juego. Por otro lado, los hilos que manejan la velocidad del juego usan un método sleep() y no estan a la espera de algún notify().
 
-**Solución propuesta para cada ítem del punto 2:**
+_Un uso incorrecto o inadecuado de las colecciones:_
+* _Es posible que se lance una excepción "Exception in thread "AWT-EventQueue-0" java.util.ConcurrentModificationException" cuando se intenta dibujar dos veces en una celda a la vez diferentes serpientes, es decir, no hay ningun tipo de bloqueo de celda. Todo el tiempo se esta iterando sobre la colección que se usa para repesentar la serpiente._  
 
-  * _N serpientes funciona de forma autónoma:_
-  
-  
-  * _El concepto de colisión no existe entre ellos. La única forma en que mueren es chocando contra una pared:_
-  
-  
-  * _Hay ratones distribuidos a lo largo del juego. Como en el juego clásico, cada vez que una serpiente se come un ratón, crece._
-  
-  
-  * _Hay algunos puntos (flechas rojas) que teletransportan a las serpientes:_
-  
-  
-  * _Los rayos hacen que la serpiente aumente su velocidad:_
-  
+**Soluciones propuestas:**
+
+* _Hicimos que se sincronizaran los hilos al momento de dibujar las serpientes para evitar concurrencia._
+
+* _Se modificó la velocidad del juego para revisar su comportamiento en un entorno donde se dan los eventos más rápido._
+
+* _Implementación de Pausa y Reanudar, con implementación de notify() para evitar pausas activas innecesarias._
   
 ## ¡¡¡Compile and run instructions!!! 🛠️
 
