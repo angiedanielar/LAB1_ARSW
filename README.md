@@ -66,6 +66,13 @@ _Suponiendo que tenemos una conexión a 100 máquinas, en teoría se tienen 100 
 
 
 ## Snake Race 🐍
+### Parte 1
+#### PrimeFinder
+
+* Ejercicio solucionado
+* Añadido el contador de primos encontrados hasta T milisegundos
+* Añadido la instrucción de presionar ENTER para continuar con la búsqueda
+
 ### Parte 3
 
   * _Posibles condiciones de carrera:_
